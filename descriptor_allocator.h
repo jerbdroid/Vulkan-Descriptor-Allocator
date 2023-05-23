@@ -14,14 +14,15 @@ struct DescriptorAllocatorHandle {
       delete;
 
   ~DescriptorAllocatorHandle();
-  DescriptorAllocatorHandle(DescriptorAllocatorHandle&& other);
-  DescriptorAllocatorHandle& operator=(DescriptorAllocatorHandle&& other);
+  DescriptorAllocatorHandle(DescriptorAllocatorHandle&& other) noexcept;
+  DescriptorAllocatorHandle& operator=(
+      DescriptorAllocatorHandle&& other) noexcept;
 
   // return this handle to the pool. Will make this handle orphaned
   void Return();
 
   // allocate new descriptor. handle has to be valid
-  // returns true if allocation succeeded, and false if it didnt
+  // returns true if allocation succeeded, and false if it didn't
   // will mutate the handle if it requires a new vkDescriptorPool
   bool Allocate(const VkDescriptorSetLayout& layout, VkDescriptorSet& builtSet);
 

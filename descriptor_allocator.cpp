@@ -89,7 +89,7 @@ DescriptorAllocatorHandle::~DescriptorAllocatorHandle() {
 }
 
 DescriptorAllocatorHandle::DescriptorAllocatorHandle(
-    DescriptorAllocatorHandle&& other) {
+    DescriptorAllocatorHandle&& other) noexcept {
   Return();
 
   vkPool = other.vkPool;
@@ -102,7 +102,7 @@ DescriptorAllocatorHandle::DescriptorAllocatorHandle(
 }
 
 vke::DescriptorAllocatorHandle& DescriptorAllocatorHandle::operator=(
-    DescriptorAllocatorHandle&& other) {
+    DescriptorAllocatorHandle&& other) noexcept {
   Return();
 
   vkPool = other.vkPool;
